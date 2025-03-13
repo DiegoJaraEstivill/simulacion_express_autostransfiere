@@ -1,4 +1,4 @@
-const express = require('express'); const path = require('path'); const app = express(); const port = 7777;
+const express = require('express'); const path = require('path'); const app = express(); const port = process.env.PORT || 7777;
 app.get('/', (req, res) => { res.send('Hello World!Funciona el despliegue 9fj39r') })
 app.listen(port, () => { console.log(`Example app listening on port ${port}`) })
 
