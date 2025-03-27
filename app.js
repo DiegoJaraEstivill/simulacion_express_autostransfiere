@@ -72,6 +72,32 @@ app.get("/descarga-certificados", (req, res) => {
   }
 });
 
+
+
+
+
+
+app.get('/OficinaInternet/servlet/docs', (req, res) => {
+  const file = req.query.file; // Se obtiene el archivo de la URL
+  const option = req.query.option; // Captura de opciones (solo para log)
+  console.log("option zz:", option); // Solo para depuración
+  if (!file) {
+    return res.status(400).send('Se requiere el nombre del archivo.');
+  }
+  const filePath = path.join(__dirname, 'OficinaInternet', 'servlet', 'docs', file);
+  res.setHeader('Content-Type', 'application/pdf'); // Asegurar que el navegador lo trate como PDF
+  res.sendFile(filePath, (err) => {
+    if (err) {
+      console.error('Error al enviar el archivo:', err);
+      res.status(500).send('Error al recuperar el archivo.');
+    }
+  });
+});
+
+
+
+
+
 app.listen(port, () => {
   console.log(`Servidor corriendo en http://localhost:${port}`);
 });
